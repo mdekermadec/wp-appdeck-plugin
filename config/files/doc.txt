@@ -1,0 +1,125 @@
+Application	You should at least set an application title and a URL
+	title	text	AppDeck
+		The text that appears in the topbar if a logo has not been defined.
+	base_url	text	http://testapp.appdeck.mobi/	Website URL
+		URL of your website. All non-absolute URLs locations are relative to this one.
+	logo	logo	http://appdata.static.appdeck.mobi/res/logo.png
+		The image that appears in the application topbar. It should be a PNG image. Its size should be at least 128x128 pixels and its background should be transparent.
+	icon	image	http://appdata.static.appdeck.mobi/res/icon.png
+		Icon used in application package. Leave empty if you want to manage it yourself.
+	version	number	1	Version	advanced
+		By increasing the version of your application, you allow the application to know if it needs to update stored data like cache.
+	api_key	text	null	API Key	advanced
+		To enable the <i>AppDeck cloud services</i> (push notification, page prefetching ...) you must register your app in My Applications and copy your API Key here.
+
+Menu
+	bootstrap[url]	text	/	Startup URL
+		The URL of the page that will be loaded in the AppDeck Home View at application launch.
+	leftmenu[url]	text	null	Left Menu URL
+		The URL of the page that will be loaded in the AppDeck Left View. Usually the application menu is put here. If the value is empty, the left menu is disabled.
+	leftmenu[width]	number	320	Left Menu Width
+		The width of the left menu.
+	rightmenu[url]	text	null	Right Menu URL
+		The URL of the page that will be loaded in the AppDeck Right View. Usually the application configuration screen is put here. If the value is empty, the right menu is disabled..
+	rightmenu[width]	number	320	Right Menu Width
+		The width of the right menu.
+
+Colors
+	app_color	color	#000000	Application
+		The color of the native application User Interface elements like text or button in top bar.
+	app_topbar_color	gradient	#0A728F,#03405F	Top Bar
+		The gradient color of the application topbar. Two colors must be set. If the value is empty, the app_color is used.
+	app_background_color	gradient	#FFFFFF,#EEEEEE	Background
+		The application background color. This color is seen behind all webviews.
+	leftmenu_background_color	gradient	#FFFFFF,#EEEEEE	Left Menu Background
+		The background color used on the right view.
+	rightmenu_background_color	gradient	#FFFFFF,#EEEEEE	Right Menu Background
+		Background color used on right view.
+	button_color	color	#000000	Button
+		All application button will use this color.
+
+Icons	All icons should be in PNG format. Size should be at least 128x128 pixels and background should be transparent.
+	icon_theme	select:dark=Dark&light=Light	dark	Theme
+		Use this to adjust color of default icon and text (white text and icon for dark theme, black text and icon for light theme)
+	icon_action	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/action_dark.png	Action
+		The icon used for sharing.
+	icon_cancel	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/cancel_dark.png	Cancel
+		The icon used in the browser to cancel page loading.
+	icon_close	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/close_dark.png	Close
+		The icon used in the popup to close the box.
+	icon_config	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/config_dark.png	Config
+		The icon used to open configuration menu.
+	icon_info	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/info_dark.png	Info
+		The icon used to open information menu.
+	icon_menu	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/menu_dark.png	Menu
+		The icon used to show left menu on iOS.		
+	icon_next	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/next_dark.png	Next
+		The icon used in the browser to go to the next page.
+	icon_previous	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/previous_dark.png	Previous
+		The icon used in the browser to go to the previous page.
+	icon_refresh	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/refresh_dark.png	Refresh
+		The icon used in the browser to refresh the page.
+	icon_search	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/search_dark.png	Search
+		The icon used to search a page.
+	icon_up	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/up_dark.png	Up
+		The icon used to represent up action.
+	icon_down	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/down_dark.png	Down
+		The icon used to represent down action.
+	icon_user	icon	http://appdata.static.appdeck.mobi/res/ios7/icons/user_dark.png	User
+		The icon used to represent user action.
+
+Images	All images should be in PNG format with transparent background.
+	image_loader	image	http://appdata.static.appdeck.mobi/res/ios7/images/loader_dark.png	Loader
+		The image used to show a loading in progress. This image will spin automatically. Its size should be at least 128x128 pixels.
+	image_pull_arrow	image	http://appdata.static.appdeck.mobi/res/ios7/images/pull_arrow_dark.png	Pull Arrow
+		The image used to refresh the page when it is pulled. This image will rotate automatically when it is pulled. Its size should be at least 128x128 pixels.
+	image_network_error	image	http://appdata.static.appdeck.mobi/res/ios7/images/network_error.png	Network Error
+		The image used to show an error instead of a blank page.
+
+Cache
+	cache	text[]	
+		All the URLs that match this regular expression will be cached forever by the application. It is important to put as many resources as possible in the cache as it will speed up the page loading far more than any other optimisation.
+
+Stats
+	ga	text	null	Google Analytics
+		Enter here your <b>google analytics id</b>. This id should be in the following format: UA-12345678-1.
+
+Prefetch
+	prefetch_url	url	http://prefetch.appdeck.mobi/<API KEY>.7z	Prefetch URL	advanced
+		The URL where the application can download the prefetch page 7z archive. <b>Do not set this value if you want AppDeck.mobi to handle prefetching for you</b>.
+	prefetch_rss	url	null
+		The RSS with all the URLs that should be put in the prefetch archive. (Used by AppDeck.mobi to create this archive).
+	prefetch_ttl	number	600
+		The time in seconds during which a fetched URL is stored in the cache.
+
+Embed	You can embed resources in your app
+	embed	text[]
+		URL of JS/CSS/Images that should be embedded in the application (one URL per line). Once embedded, app will never need to download this resource and always use the embedded one.
+	embed_url	url	null	Embed URL	advanced
+		The URL of the text file containing all the URLs of resources that should be embedded in the application : one URL per line. Once embedded, the application will never download this resource and always use the embedded one, even once the application version has been changed. You should put the URL of all the fixed JS/CSS/Images assets here.
+	embed_runtime_url	url	null	Embed Runtime	advanced
+		When it is launched, the application will try to download all the new resources that are in this text file : one URL per line. This can be used to help the application download the images of a new article.
+
+Push		advanced
+	push_rss	url	null	Push Rss	advanced
+		The RSS with the URL that should be used as source for push notification. (Used by AppDeck.mobi to send push notifications).
+	push_register	url	http://push.appdeck.mobi/register	Push Register	advanced
+		The URL where the device should register the push notification token. <b>Do not set this value if you want AppDeck.mobi to handle push notifications for you</b>.
+
+Screens
+	screens	screen[]	{}
+		The array of screen configuration. Each screen is defined by url masks which should be seen in the same webview. Additional options such as type, ispopup and enable_share allow AppDeck to custom presentation of this screen.
+	screens[].title	text	null
+		The title used for this screen. It is used for the back link.
+	screens[].logo	text	null
+		The logo used for this screen. It will appear in topbar.
+	screens[].urls	regexp array	[]
+		List of regexp that match all the URLs which correspond to the same screen.
+	screens[].type	default, browser	default
+		The type of screen; default: this page is viewed as an application screen. browser: this page is a regular Internet page and the browser control should be shown.
+	screens[].enable_share	boolean	false
+		If it is <i>true</i>, an action button is added in the topbar allowing the user to share this page on twitter/facebook/mail... you should add in the HTML header of the page a special meta: '<meta id="meta-real-url" name="real-page" content="XXX" />' with XXX the desktop URL of this page.
+	screens[].ttl	seconds	600
+		The time before the content of this screen will be refreshed.
+	screens[].popup	boolean	false
+		If it is <i>true</i>, this screen is shown as a popup.
