@@ -45,6 +45,21 @@
 include_once( dirname( __FILE__ ) . '/inc/yd-widget-framework.inc.php' );	// standard framework VERSION 20110405-01 or better
 include_once( dirname( __FILE__ ) . '/inc/wp-appdeck-main.inc.php' );		// custom classes
 
+/** admin back-office submenu includes **
+//TODO: don't declare this twice (in the class and here)
+$submenus	= array(
+		'dashboard',
+		'advertisement',
+		'statistics',
+		'configuration',
+		'push',
+		'emulator',
+		'publication'
+);
+foreach( $this->submenus as $submenu ) {
+	include_once( dirname( __FILE__ ) . '/inc/admin/sub_' . $submenu . '.inc.php' );
+} */
+
 /**
  * Just fill up necessary settings in the configuration array
  * to create a new custom plugin instance...
