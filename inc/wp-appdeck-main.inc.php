@@ -74,7 +74,7 @@ class ydApdkPlugin extends YD_Plugin {
 			add_action( 'admin_menu', array( $this, 'setupCustomMenu' ) );
 			
 			/** Load admin css **/
-			//add_action( 'admin_init',	array( $this, 'addAdminStylesheets' ) );
+			add_action( 'admin_init',	array( $this, 'addAdminStylesheets' ) );
 			
 			/** Load admin js **/
 			add_action('admin_enqueue_scripts', array( $this, 'loadAdminScripts' ) );
@@ -150,8 +150,35 @@ class ydApdkPlugin extends YD_Plugin {
 	 *
 	 */
 	function addAdminStylesheets() {
-		wp_register_style( 'bs-switch', plugins_url( 'css/bootstrap-switch.css', dirname( __FILE__ ) ) );
-		wp_enqueue_style( 'bs-switch' );
+
+		// bootstrap wpadmin css from Twitter Bootstrap wordpress plugin
+		// http://www.hostliketoast.com/2012/04/twitter-bootstrap-css-libraries-now-available-in-wordpress-admin/
+		wp_register_style( 'bootstrap-wpadmin', plugins_url( 'css/bootstrap-wpadmin.css', dirname( __FILE__ ) ) );
+		wp_register_style( 'bootstrap-wpadminfix', plugins_url( 'css/bootstrap-wpadmin-fixes.css', dirname( __FILE__ ) ), array( 'bootstrap-wpadmin' ) );		
+
+		wp_register_style( 'bs-switch', plugins_url( 'css/bootstrap-switch.min.css', dirname( __FILE__ ) ) , array( 'bootstrap-wpadminfix' ));
+		wp_register_style( 'morris', plugins_url( 'css/morris.css', dirname( __FILE__ ) ) );
+		wp_register_style( 'font-awesome', plugins_url( 'css/font-awesome.min.css', dirname( __FILE__ ) ) );
+		wp_register_style( 'wp-appdeck', plugins_url( 'css/wp-appdeck.css', dirname( __FILE__ ) ) , array( 'bootstrap-wpadminfix' ));
+		
+		// always load bootstrap and commons css
+		wp_enqueue_style( 'bootstrap-wpadmin' );
+		wp_enqueue_style( 'bootstrap-wpadminfix' );
+		wp_enqueue_style( 'font-awesome' );
+		wp_enqueue_style( 'wp-appdeck' );
+
+	}
+
+	/**
+	 * Loads appdeck credential as inline javascript
+	 *
+	 */
+	public function admin_inline_js()
+	{
+		echo "<script type='text/javascript'>\n";
+		echo "var appdeck_api_key = \"{$this->appdeck_credentials['api_key']}\";\r\n";
+		echo "var appdeck_api_secret = \"{$this->appdeck_credentials['api_secret']}\";\r\n";
+		echo "\n</script>";
 	}
 
 	/**
@@ -168,22 +195,74 @@ class ydApdkPlugin extends YD_Plugin {
 		)
 			return $hook;
 
-		wp_enqueue_script('jquery');
-		wp_enqueue_script('colorpicker');
-		wp_enqueue_script(
-			'bs-switch',
-			plugins_url( 'js/bootstrap-switch.js', dirname( __FILE__ ) ),
+		// insert in javascript appdeck credential
+		add_action( 'admin_print_scripts', array($this, 'admin_inline_js') );
+		// force prototype to not load as we prefer use jquery for $ var and this script is not used by us
+		wp_deregister_script('prototype');
+
+		wp_register_script(
+			'bootstrap',
+			plugins_url( 'js/bootstrap.min.js', dirname( __FILE__ ) ),
 			array( 'jquery' ),
-			'0.1',
+			'3.2.0',
 			true
 		);
-		wp_enqueue_script(
+
+		wp_register_script(
+			'bs-switch',
+			plugins_url( 'js/bootstrap-switch.min.js', dirname( __FILE__ ) ),
+			array( 'jquery', 'bootstrap' ),
+			'1.8',
+			true
+		);
+
+		wp_register_script(
+			'raphael',
+			plugins_url( 'js/raphael-min.js', dirname( __FILE__ ) ),
+			array( 'jquery' ),
+			'2.1.0',
+			true
+		);
+
+		wp_register_script(
+			'morris',
+			plugins_url( 'js/morris.min.js', dirname( __FILE__ ) ),
+			array( 'jquery', 'raphael' ),
+			'0.5.1',
+			true
+		);
+
+		wp_register_script(
 			'appdeck-back',
 			plugins_url( 'js/appdeck-back.js', dirname( __FILE__ ) ),
 			array( 'jquery' ),
 			'0.1',
 			true
 		);
+
+		wp_register_script(
+			'appdeck-back-dashboard',
+			plugins_url( 'js/appdeck-back-dashboard.js', dirname( __FILE__ ) ),
+			array( 'appdeck-back' ),
+			'0.1',
+			true
+		);
+
+		wp_register_script(
+			'appdeck-back-advertisement',
+			plugins_url( 'js/appdeck-back-advertisement.js', dirname( __FILE__ ) ),
+			array( 'appdeck-back' ),
+			'0.1',
+			true
+		);
+
+
+		// always load bootstrap and commons js
+		wp_enqueue_script('appdeck-back');
+		wp_enqueue_script('bootstrap');
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('colorpicker');
+
 	}
 	
 	/**

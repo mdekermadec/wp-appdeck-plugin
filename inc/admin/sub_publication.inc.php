@@ -1,24 +1,28 @@
 <div class="wrap">
-<div id="icon-options-general" class="icon32"><br/></div>
-<h2>Appdeck setup publication</h2>
-
 <div class="metabox-holder has-right-sidebar">
-
-<!-- /** WP standard admin block ( div postbox / h3 hndle / div inside / p ) **/ -->
 <div class="postbox" id="control">
-<h3 id="main_settings" class="hndle">Publication</h3>
-<div class="inside">
 
-<?php 
+<div class="bootstrap-wpadmin">
 
-//TODO
+<!-- Bootstrap navbar with Title and AppDeck logo -->
+<nav class="navbar navbar-default navbar-appdeck" role="navigation">
+    <div class="pull-right">
+        <div class="appdeck-logo" ></div>
+    </div>
+    <div class="navbar-header">
+        <div class="navbar-brand">
+          Publication
+        </div>
+    </div>
+</nav>
 
-?>
+<div class="container">
 
-</div><!--  // / inside -->
+
+</div><!--  // / container -->
+</div><!--  // / bootstrap-wpadmin -->
+
 </div><!-- 	// / postbox -->
-
 </div><!--  // / wrap -->
 <div class="clear"></div>
-
 </div><!--  // / metabox-holder  -->

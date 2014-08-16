@@ -1,0 +1,84 @@
+.appdeck-logo
+{
+    background-image: url('../img/logo-appdeck-red.png');
+    background-size: 100% 100%;
+    width: 98px;
+    height: 25px;
+    margin: 10px;
+}
+
+.navbar-appdeck
+{
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(243,243,243,1) 50%, rgba(237,237,237,1) 51%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(243,243,243,1)), color-stop(51%,rgba(237,237,237,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+.appdeck-ajax-page-loading
+{
+
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+    width: 100%;
+
+    text-align: center;
+}
+
+
+#main-stats {
+    background-color: #FDFDFD;
+    border-bottom: 1px solid #EFEEF3;
+}
+#main-stats .stats-row {
+    box-shadow: -1px 0 5px 2px #F9F9F9 inset;
+    margin: 0;
+}
+#main-stats .stat {
+    border-right: 1px solid #E8E9EE;
+    box-shadow: 1px 0 0 0 #FFFFFF;
+    padding: 25px 0 30px;
+    position: relative;
+    text-align: right;
+}
+#main-stats .stat.last {
+    border-right: 0 none;
+}
+#main-stats .stat .data {
+    color: #29323A;
+    font-size: 16px;
+    font-weight: 600;
+    padding-right: 50px;
+    text-transform: uppercase;
+}
+#main-stats .stat .data .number {
+    color: #32A0EE;
+    font-size: 25px;
+    margin-right: 15px;
+}
+#main-stats .stat .plus {
+	display: none;
+    color: #348017;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: lighter;
+    position: absolute;
+    left: 100px;
+}
+#main-stats .stat .date {
+    color: #B4B8BB;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: lighter;
+    position: absolute;
+    right: 50px;
+}
