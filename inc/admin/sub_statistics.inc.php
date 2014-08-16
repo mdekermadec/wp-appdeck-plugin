@@ -1,3 +1,11 @@
+<?php
+
+wp_enqueue_script('appdeck-back-statistics');
+wp_enqueue_script('bs-switch');
+wp_enqueue_style( 'bs-switch' );
+
+?>
+
 <div class="wrap">
 <div class="metabox-holder has-right-sidebar">
 <div class="postbox" id="control">

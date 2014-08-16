@@ -1,4 +1,4 @@
-//(function($) {    
+(function($) {    
 
 function refresh_stats(chart, period, origin)
 {
@@ -80,5 +80,5 @@ $( document ).ready(function() {
     })
 });
 
-//})( jQuery );
+})( jQuery );
 

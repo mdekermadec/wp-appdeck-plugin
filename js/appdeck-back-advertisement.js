@@ -1,13 +1,13 @@
-var switch_banner;
+(function($){
 
 function init_ui(config)
 {
   $('#ads_enabled').bootstrapSwitch({state: config.ads_enabled});
-  switch_banner = $('#banner').bootstrapSwitch({state: config.ads_enable_banner});
+  $('#banner').bootstrapSwitch({state: config.ads_enable_banner});
   $('#rectangle').bootstrapSwitch({state: config.ads_enable_rectangle});
   $('#interstitial').bootstrapSwitch({state: config.ads_enable_interstitial});
 
-  $('.appdeck-ajax-page-loading').fadeOut();
+  $('.appdeck-ajax-page-loading').hide();
   $('#ads').fadeIn();
   if (config.ads_enabled)
     $('#ads_options').show();
@@ -17,21 +17,18 @@ function init_ui(config)
 
 function save_change()
 {
-  console.log(switch_banner.data('bootstrap-switch').state());
-
   $.ajax({
     type: "POST",
     url: "http://api.appdeck.mobi/ads",
     data: {
       key: appdeck_api_key,
       secret: appdeck_api_secret,
-      ads_enabled: 0+$('#ads_enabled').prop('checked'),
-      ads_enable_banner: 0+$('#banner').prop('checked'),
-      ads_enable_rectangle: 0+$('#rectangle').prop('checked'),
-      ads_enable_interstitial: 0+$('#interstitial').prop('checked')
+      ads_enabled: $('#ads_enabled').data('bootstrap-switch').state(),
+      ads_enable_banner: $('#banner').data('bootstrap-switch').state(),
+      ads_enable_rectangle: $('#rectangle').data('bootstrap-switch').state(),
+      ads_enable_interstitial: $('#interstitial').data('bootstrap-switch').state()
     },
     success: function( result ) {
-      console.log(result);
             if (result.success)
             {
               //show_ui(result.value);
@@ -73,3 +70,5 @@ $(document).ready(function() {
 
 
 });
+
+})( jQuery );

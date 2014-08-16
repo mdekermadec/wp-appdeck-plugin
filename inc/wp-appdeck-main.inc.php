@@ -197,9 +197,14 @@ class ydApdkPlugin extends YD_Plugin {
 
 		// insert in javascript appdeck credential
 		add_action( 'admin_print_scripts', array($this, 'admin_inline_js') );
-		// force prototype to not load as we prefer use jquery for $ var and this script is not used by us
-		wp_deregister_script('prototype');
 
+		// force prototype to not load as we prefer use jquery for $ var and this script is not used by us
+		//wp_deregister_script('prototype');
+        //wp_deregister_script( 'scriptaculous-effects' );
+
+		wp_enqueue_script( 'jquery' );
+
+		// bootstrap
 		wp_register_script(
 			'bootstrap',
 			plugins_url( 'js/bootstrap.min.js', dirname( __FILE__ ) ),
@@ -211,26 +216,12 @@ class ydApdkPlugin extends YD_Plugin {
 		wp_register_script(
 			'bs-switch',
 			plugins_url( 'js/bootstrap-switch.min.js', dirname( __FILE__ ) ),
-			array( 'jquery', 'bootstrap' ),
-			'1.8',
+			array( 'bootstrap' ),
+			'3.0.2',
 			true
 		);
 
-		wp_register_script(
-			'raphael',
-			plugins_url( 'js/raphael-min.js', dirname( __FILE__ ) ),
-			array( 'jquery' ),
-			'2.1.0',
-			true
-		);
-
-		wp_register_script(
-			'morris',
-			plugins_url( 'js/morris.min.js', dirname( __FILE__ ) ),
-			array( 'jquery', 'raphael' ),
-			'0.5.1',
-			true
-		);
+		// appdeck
 
 		wp_register_script(
 			'appdeck-back',
@@ -256,6 +247,31 @@ class ydApdkPlugin extends YD_Plugin {
 			true
 		);
 
+		wp_register_script(
+			'appdeck-back-statistics',
+			plugins_url( 'js/appdeck-back-statistics.js', dirname( __FILE__ ) ),
+			array( 'appdeck-back' ),
+			'0.1',
+			true
+		);
+
+		// morris js
+
+		wp_register_script(
+			'raphael',
+			plugins_url( 'js/raphael-min.js', dirname( __FILE__ ) ),
+			array( 'jquery' ),
+			'2.1.0',
+			true
+		);
+
+		wp_register_script(
+			'morris',
+			plugins_url( 'js/morris.min.js', dirname( __FILE__ ) ),
+			array( 'raphael' ),
+			'0.5.1',
+			true
+		);
 
 		// always load bootstrap and commons js
 		wp_enqueue_script('appdeck-back');
