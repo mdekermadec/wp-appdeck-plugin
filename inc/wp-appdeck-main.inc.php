@@ -161,6 +161,8 @@ class ydApdkPlugin extends YD_Plugin {
 		wp_register_style( 'font-awesome', plugins_url( 'css/font-awesome.min.css', dirname( __FILE__ ) ) );
 		wp_register_style( 'wp-appdeck', plugins_url( 'css/wp-appdeck.css', dirname( __FILE__ ) ) , array( 'bootstrap-wpadminfix' ));
 		
+		wp_register_style( 'daterangepicker-bs3', plugins_url( 'css/daterangepicker-bs3.css', dirname( __FILE__ ) ) );
+
 		// always load bootstrap and commons css
 		wp_enqueue_style( 'bootstrap-wpadmin' );
 		wp_enqueue_style( 'bootstrap-wpadminfix' );
@@ -272,6 +274,26 @@ class ydApdkPlugin extends YD_Plugin {
 			'0.5.1',
 			true
 		);
+
+		// moment
+
+		wp_register_script(
+			'moment',
+			plugins_url( 'js/moment.js', dirname( __FILE__ ) ),
+			array( ),
+			'2.8.1',
+			true
+		);
+
+		// date range picker
+		wp_register_script(
+			'daterangepicker',
+			plugins_url( 'js/daterangepicker.js', dirname( __FILE__ ) ),
+			array( 'jquery', 'bootstrap', 'moment'),
+			'1.3.11',
+			true
+		);		
+
 
 		// always load bootstrap and commons js
 		wp_enqueue_script('appdeck-back');

@@ -1,3 +1,12 @@
+
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+a, a:visited, a:focus, a:active, a:hover{
+    outline:0 none !important;
+}
+
 .appdeck-logo
 {
     background-image: url('../img/logo-appdeck-red.png');
@@ -23,6 +32,8 @@
     border-right: none !important;
 }
 
+/* advertisement */
+
 .appdeck-ajax-page-loading
 {
 
@@ -34,6 +45,7 @@
     text-align: center;
 }
 
+/* dashboard */
 
 #main-stats {
     background-color: #FDFDFD;
@@ -82,3 +94,22 @@
     position: absolute;
     right: 50px;
 }
+
+/* statistics */
+
+.datepicker
+{
+    width: inherit;
+}
+
+.datemenu
+{
+    background-color: #EFEFEF;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px 4px 4px 4px;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+}
+
+
