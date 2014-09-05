@@ -77,6 +77,9 @@ $( document ).ready(function() {
 
     $('.refresh-stats').click(function() {
         refresh_stats($(this).attr('data-unit'), $(this).attr('data-period'), this);
+        extra = $(this).attr('data-unit-extra');
+        if (extra)
+            refresh_stats(extra, $(this).attr('data-period'), this);
     })
 });
 

@@ -7,9 +7,10 @@
   border-bottom: 1px solid #eee;
   width: 100%;
   max-width: 1140px;
-  padding-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+  padding-top: 50px;
+    /*margin-left: auto;
+    margin-right: auto;*/
+
     padding-left: 15px;
     padding-right: 15px;  
 }
@@ -51,29 +52,38 @@
 
 </style>
 
-
 <div class="wrap">
-<div id="icon-options-general" class="icon32"><br/></div>
-<h2>Appdeck setup</h2>
-
 <div class="metabox-holder has-right-sidebar">
-
-<!-- /** WP standard admin block ( div postbox / h3 hndle / div inside / p ) **/ -->
 <div class="postbox" id="control">
-<h3 id="main_settings" class="hndle">Main settings</h3>
-<div class="inside">
+
+<div class="bootstrap-wpadmin">
+
+<!-- Bootstrap navbar with Title and AppDeck logo -->
+<nav class="navbar navbar-default navbar-appdeck" role="navigation">
+    <div class="pull-right">
+        <div class="appdeck-logo" ></div>
+    </div>
+    <div class="navbar-header">
+        <div class="navbar-brand">
+          App Configuration
+        </div>
+    </div>
+</nav>
 
 <?php 
+
+wp_enqueue_script('appdeck-back-app-config');
+wp_enqueue_script('colorpicker');
 
 include( dirname( dirname( __FILE__ ) ) . '/config/app_config.php' );
 include( dirname( dirname( __FILE__ ) ) . '/config/app_config_template.php' );
 
 ?>
 
-</div><!--  // / inside -->
-</div><!-- 	// / postbox -->
+</div><!--  // / container -->
+</div><!--  // / bootstrap-wpadmin -->
 
-</div><!--  // / wrap -->
+</div><!--  // / postbox -->
+</div><!--  // / metabox-holder -->
 <div class="clear"></div>
-
-</div><!--  // / metabox-holder  -->
+</div><!--  // / wrap  -->

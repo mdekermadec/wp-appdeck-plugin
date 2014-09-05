@@ -79,8 +79,8 @@ wp_enqueue_style( 'morris' );
         <h4 class="clearfix">
             Users
             	<div class="btn-group pull-right">
-    				<button onClick="refresh_stats('users', 'week', null); refresh_stats('newusers', 'week', this);" class="btn btn-default btn-sm active">Week</button>
-    				<button onClick="refresh_stats('users', 'month', null); refresh_stats('newusers', 'month', this);" class="btn btn-default btn-sm">Month</button>
+    				<button data-unit="users" data-unit-extra="newusers" data-period="week" class="refresh-stats btn btn-default btn-sm active">Week</button>
+    				<button data-unit="users" data-unit-extra="newusers" data-period="month" class="refresh-stats btn btn-default btn-sm">Month</button>
     			</div>
         </h4>
     </div>

@@ -1,10 +1,26 @@
 <?php
 include( dirname( dirname( __FILE__ ) ) . '/config/parse.php' );
 
+global $datas;
+
 // TODO: Get App JSON From AppDeck Cloud Services
-$file = dirname( dirname( __FILE__ ) ) . '/config/files/app.json';
+//$file = dirname( dirname( __FILE__ ) ) . '/config/files/app.json';
+
+$url = 'http://api.appdeck.mobi/config?key='.urlencode($this->appdeck_credentials['api_key']).'&secret='.urlencode($this->appdeck_credentials['api_secret']);
+
+$result = wp_remote_get( $url );
+
+if ($result['response']['code'] != 200)
+{
+	$datas = false;
+	return;
+}
+
+$json = $result['body'];
+
+
 //echo 'file: ' . $file . '<br/>'; 	//Debug
-$json = file_get_contents( $file );
+//$json = file_get_contents( $file );
 $json = preg_replace("#(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|([\s\t]//.*)|(^//.*)#", '', $json);
 
 //echo 'json: ' . $json . '<br/>';	//Debug
@@ -38,9 +54,11 @@ if( NULL === $config ) {
 	echo '<br/>';
 	wp_die();
 }
+
+$config = $config['value']['config'];
 //var_dump( $config );				//Debug
 
-global $datas;
+
 $datas = getAppConfigDoc();
 //echo '<pre>';							//Debug
 //var_dump( $datas );					//Debug
@@ -49,6 +67,7 @@ $datas = getAppConfigDoc();
 // update config
 if (count($_POST))
 {
+	unset($_POST['action']);
 	$screens = array();
 	foreach ($datas as $section_name => $section_info)
 		foreach ($section_info['item'] as $item_name => $item)
@@ -132,7 +151,22 @@ if (count($_POST))
 	print $app->json;*/
 
 	// TODO: Save json to AppDeck Cloud Services
-	print json_encode($config);
+	$url .= '&json='.urlencode(json_encode($config));
+
+	print $url;
+
+	$result = wp_remote_get( $url );
+
+	var_dump($result);
+
+	if ($result['response']['code'] != 200)
+	{
+		print json_encode(false);
+		return;
+	}
+
+
+	print $result['body'];
 	exit;
 }
 

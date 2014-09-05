@@ -5,13 +5,14 @@ class ydApdkPlugin extends YD_Plugin {
 	const	MENU_ICON	= 'img/rocket.png';
 	
 	private $submenus	= array(
-		'dashboard',
-		'advertisement',
-		'statistics',
-		'configuration',
-		'push',
-		'emulator',
-		'publication'
+		'Dashboard' => 'dashboard',
+		'Advertisement' => 'advertisement',
+		'Statistics' => 'statistics',
+		'Configuration' => 'configuration',
+		'App Config' => 'app_config',
+		'Push' => 'push',
+		//'emulator' => 'emulator',
+		'Publication' => 'publication'
 	);
 	
 	private $appdeck_credentials = array(
@@ -78,6 +79,11 @@ class ydApdkPlugin extends YD_Plugin {
 			
 			/** Load admin js **/
 			add_action('admin_enqueue_scripts', array( $this, 'loadAdminScripts' ) );
+
+			/** ajax **/
+			add_action('wp_ajax_appdeckconfig', array( $this, 'appdeckConfig'));
+
+
 		} else {
 			
 			/** Create our own URL prefix for displaying app mobile content **/
@@ -105,17 +111,16 @@ class ydApdkPlugin extends YD_Plugin {
 		/** Using registered $page handle to hook stylesheet loading **/
 		add_action( 'admin_print_styles-' . $page, array( $this, 'addAdminStylesheets' ) );
 		
-		foreach( $this->submenus as $submenu ) {
+		foreach( $this->submenus as $submenu_title => $submenu ) {
 			add_submenu_page( 
 				'appdeck-setup', 
-				$submenu, 
-				$submenu, 
+				$submenu_title, 
+				$submenu_title, 
 				'activate_plugins', 
 				'appdeck-setup/' . $submenu,
 				array( $this, 'submenu_' . $submenu )
 			);
 		}
-		
 		
 	}
 	
@@ -134,6 +139,9 @@ class ydApdkPlugin extends YD_Plugin {
 	}
 	function submenu_configuration() {
 		include_once( dirname( __FILE__ ) . '/admin/sub_configuration.inc.php' );
+	}
+	function submenu_app_config() {
+		include_once( dirname( __FILE__ ) . '/admin/sub_app_config.inc.php' );
 	}
 	function submenu_push() {
 		include_once( dirname( __FILE__ ) . '/admin/sub_push.inc.php' );
@@ -257,6 +265,14 @@ class ydApdkPlugin extends YD_Plugin {
 			true
 		);
 
+		wp_register_script(
+			'appdeck-back-app-config',
+			plugins_url( 'js/appdeck-back-app-config.js', dirname( __FILE__ ) ),
+			array( 'appdeck-back', 'bootstrap-colorpicker' ),
+			'0.1',
+			true
+		);
+
 		// morris js
 
 		wp_register_script(
@@ -294,6 +310,15 @@ class ydApdkPlugin extends YD_Plugin {
 			true
 		);		
 
+
+		// color picker
+		wp_register_script(
+			'bootstrap-colorpicker',
+			plugins_url( 'js/bootstrap-colorpicker.min.js', dirname( __FILE__ ) ),
+			array( 'jquery', 'bootstrap'),
+			'1.0',
+			true
+		);		
 
 		// always load bootstrap and commons js
 		wp_enqueue_script('appdeck-back');
@@ -380,6 +405,15 @@ class ydApdkPlugin extends YD_Plugin {
 		}
 	}
 	
+	/** AJAX **/
+
+	function appdeckConfig()
+	{
+		print require( dirname(dirname( __FILE__ )) . '/config/app_config.php' );
+		exit;
+	}
+
+
 	/**
 	 * Process AppDeck content URLs
 	 * (meant for the mobile app)

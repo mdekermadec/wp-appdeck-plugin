@@ -1,5 +1,11 @@
 <?php
 
+if (isset($_GET['revenue']) && $_GET['revenue'] == 1)
+{
+	require('sub_advertisement_revenue.inc.php');
+	return;
+}
+
 wp_enqueue_script('appdeck-back-advertisement');
 wp_enqueue_script('bs-switch');
 wp_enqueue_style( 'bs-switch' );

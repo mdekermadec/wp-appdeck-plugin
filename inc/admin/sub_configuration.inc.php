@@ -134,6 +134,31 @@ if ( isset( $_POST['appdeck_account'] ) ) {
 </table>
 		
 </div><!--  // / inside -->
+
+
+<div class="bootstrap-wpadmin">
+
+<!-- Bootstrap navbar with Title and AppDeck logo -->
+<nav class="navbar navbar-default navbar-appdeck" role="navigation">
+    <div class="pull-right">
+        <div class="appdeck-logo" ></div>
+    </div>
+    <div class="navbar-header">
+        <div class="navbar-brand">
+          App Config
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+<p>ici</p>
+
+</div><!--  // / container -->
+</div><!--  // / bootstrap-wpadmin -->
+
+
+
 </div><!-- 	// / postbox -->
 
 </div><!--  // / wrap -->
